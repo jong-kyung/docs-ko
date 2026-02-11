@@ -103,7 +103,7 @@ Rolldown은 알 수 없거나 유효하지 않은 옵션이 전달될 때 경고
 
 #### `manualChunks`에서 `advancedChunks`로 {#manualchunks-to-advancedchunks}
 
-Rolldown은 Rollup에서도 제공되는 `manualChunks` 옵션을 지원하지만, 이는 지원 중단으로 표시되어 있습니다. 대신 Rolldown은 webpack의 `splitChunk`와 더 유사한 [`advancedChunks` 옵션](https://rolldown.rs/guide/in-depth/advanced-chunks#advanced-chunks)을 통해 더 세밀한 설정을 제공합니다:
+Rolldown은 Rollup에서도 제공되는 `manualChunks` 옵션을 지원하지만, 이는 지원 중단으로 표시되어 있습니다. 대신 Rolldown은 webpack의 `splitChunk`와 더 유사한 [`advancedChunks` 옵션](https://rolldown.rs/in-depth/manual-code-splitting)을 통해 더 세밀한 설정을 제공합니다:
 
 ```js
 // Old configuration (Rollup)
