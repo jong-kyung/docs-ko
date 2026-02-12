@@ -147,9 +147,9 @@ export default {
 
 ## 네이티브 플러그인 활성화 {#enabling-native-plugins}
 
-Rolldown과 Oxc 덕분에 별칭(alias)이나 resolve 플러그인과 같은 다양한 Vite 내부 플러그인들이 Rust로 전환되었습니다. 다만 현재 시점에서는 플러그인 동작이 JavaScript 버전과 다를 수 있기 때문에, 기본적으로 비활성화되어 있습니다.
+Rolldown과 Oxc 덕분에 별칭(alias)이나 resolve 플러그인과 같은 다양한 Vite 내부 플러그인들이 Rust로 전환되었습니다. 이제 네이티브 플러그인이 기본적으로 활성화되며, 기본값은 `'v1'`으로 설정됩니다.
 
-이를 테스트하려면 Vite 설정에서 `experimental.enableNativePlugin` 옵션을 `true`로 설정해 주세요.
+문제가 발생할 경우, 임시 해결책으로 Vite 설정에서 `experimental.enableNativePlugin` 옵션을 `'resolver'` 또는 `false`로 변경할 수 있습니다. 단, 이 옵션은 추후 삭제될 예정이니 참고하시기를 바랍니다.
 
 ### Oxc의 React refresh 변환 활용하기 {#utilizing-oxc-s-react-refresh-transform}
 
