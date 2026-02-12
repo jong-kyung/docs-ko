@@ -342,4 +342,4 @@ const plugin = {
 }
 ```
 
-이는 [Rolldown이 JavaScript가 아닌 모듈을 지원하며](https://rolldown.rs/guide/in-depth/module-types), 명시적으로 지정하지 않는 한 확장자에서 모듈 타입을 추론하기 때문입니다.
+이는 [Rolldown이 JavaScript가 아닌 모듈을 지원하며](https://rolldown.rs/in-depth/module-types), 명시적으로 지정하지 않는 한 확장자에서 모듈 타입을 추론하기 때문입니다.
