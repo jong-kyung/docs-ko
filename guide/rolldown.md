@@ -36,7 +36,7 @@ Rolldown을 개발하게 된 동기에 대해 더 알고자 한다면, [Rolldown
 
 ```json
 {
-  "dependencies": {
+  "devDependencies": {
     "vite": "^7.0.0" // [!code --]
     "vite": "npm:rolldown-vite@latest" // [!code ++]
   }
