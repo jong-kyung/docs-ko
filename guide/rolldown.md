@@ -22,7 +22,7 @@ Rolldown은 세 가지 핵심 원칙이 있습니다:
 
 3. **추가 기능**: 고급 청크 분할 제어, 내장 HMR, 모듈 페더레이션 등 Rollup이나 esbuild에서 제공하지 않는 기능들을 Rolldown에서 도입합니다.
 
-Rolldown을 개발하게 된 동기에 대해 더 알고자 한다면, [Rolldown이 만들어진 이유](https://rolldown.rs/guide/#why-rolldown)를 참고해 주세요.
+Rolldown을 개발하게 된 동기에 대해 더 알고자 한다면, [Rolldown이 만들어진 이유](https://rolldown.rs/guide/introduction#why-rolldown)를 참고해 주세요.
 
 ## `rolldown-vite` 이점 {#benefits-of-trying-rolldown-vite}
 
@@ -36,7 +36,7 @@ Rolldown을 개발하게 된 동기에 대해 더 알고자 한다면, [Rolldown
 
 ```json
 {
-  "dependencies": {
+  "devDependencies": {
     "vite": "^7.0.0" // [!code --]
     "vite": "npm:rolldown-vite@latest" // [!code ++]
   }
@@ -44,6 +44,12 @@ Rolldown을 개발하게 된 동기에 대해 더 알고자 한다면, [Rolldown
 ```
 
 Vitepress나 다른 메타 프레임워크와 같이 Vite를 피어 디펜던시로 사용하고 있다면, `package.json` 파일에서 `vite` 디펜던시를 오버라이드해야 합니다. 사용중인 패키지 매니저에 따라 방법이 조금 다릅니다:
+
+::: tip 버전을 고정해주세요!
+
+이 예제에서는 `@latest`를 사용하고 있지만,[`rolldown-vite는 아직 실험 단계`](#versioning-policy)이므로 예상치 못한 변경 사항을 방지하기 위해 특정 버전 번호를 사용하는 것을 권장합니다.
+
+:::
 
 :::code-group
 
@@ -103,7 +109,7 @@ Rolldown은 알 수 없거나 유효하지 않은 옵션이 전달될 때 경고
 
 #### `manualChunks`에서 `advancedChunks`로 {#manualchunks-to-advancedchunks}
 
-Rolldown은 Rollup에서도 제공되는 `manualChunks` 옵션을 지원하지만, 이는 지원 중단으로 표시되어 있습니다. 대신 Rolldown은 webpack의 `splitChunk`와 더 유사한 [`advancedChunks` 옵션](https://rolldown.rs/guide/in-depth/advanced-chunks#advanced-chunks)을 통해 더 세밀한 설정을 제공합니다:
+Rolldown은 Rollup에서도 제공되는 `manualChunks` 옵션을 지원하지만, 이는 지원 중단으로 표시되어 있습니다. 대신 Rolldown은 webpack의 `splitChunk`와 더 유사한 [`advancedChunks` 옵션](https://rolldown.rs/in-depth/manual-code-splitting)을 통해 더 세밀한 설정을 제공합니다:
 
 ```js
 // Old configuration (Rollup)
@@ -141,9 +147,9 @@ export default {
 
 ## 네이티브 플러그인 활성화 {#enabling-native-plugins}
 
-Rolldown과 Oxc 덕분에 별칭(alias)이나 resolve 플러그인과 같은 다양한 Vite 내부 플러그인들이 Rust로 전환되었습니다. 다만 현재 시점에서는 플러그인 동작이 JavaScript 버전과 다를 수 있기 때문에, 기본적으로 비활성화되어 있습니다.
+Rolldown과 Oxc 덕분에 별칭(alias)이나 resolve 플러그인과 같은 다양한 Vite 내부 플러그인들이 Rust로 전환되었습니다. 이제 네이티브 플러그인이 기본적으로 활성화되며, 기본값은 `'v1'`으로 설정됩니다.
 
-이를 테스트하려면 Vite 설정에서 `experimental.enableNativePlugin` 옵션을 `true`로 설정해 주세요.
+문제가 발생할 경우, 임시 해결책으로 Vite 설정에서 `experimental.enableNativePlugin` 옵션을 `'resolver'` 또는 `false`로 변경할 수 있습니다. 단, 이 옵션은 추후 삭제될 예정이니 참고하시기를 바랍니다.
 
 ### Oxc의 React refresh 변환 활용하기 {#utilizing-oxc-s-react-refresh-transform}
 
@@ -192,7 +198,7 @@ export default defineConfig({
 
 실시간으로 논의하고 문제를 해결하기 위해 [Rolldown 디스코드](https://chat.rolldown.rs/)에 참여할 수도 있습니다.
 
-## 버전 관리 정책 {#version-policy}
+## 버전 관리 정책 {#versioning-policy}
 
 `rolldown-vite` 버전 관리 정책은 메이저 및 마이너 버전을 기존 Vite 패키지와 일치시키는 형태로 운영됩니다. 이러한 동기화를 통해 특정 Vite 마이너 릴리스에 포함된 기능은 이에 대응하는 `rolldown-vite` 마이너 릴리스에도 포함됩니다. 다만 패치 버전은 두 프로젝트 간 동기화되지 않는다는 점에 유의하세요. 특정 Vite 변경사항이 `rolldown-vite`에도 포함되었는지 확인하려면 [`rolldown-vite` 변경 사항](https://github.com/vitejs/rolldown-vite/blob/rolldown-vite/packages/vite/CHANGELOG.md)을 참고해 주세요.
 
@@ -314,7 +320,7 @@ const plugin = {
 
 ### 훅 필터 기능 {#hook-filter-features}
 
-Rolldown은 Rust와 JavaScript 런타임 간 통신 오버헤드를 줄이기 위해 [훅 필터 기능](https://rolldown.rs/guide/plugin-development#plugin-hook-filters)을 도입했습니다. 이를 사용해 플러그인 성능을 향상시킬 수 있습니다.
+Rolldown은 Rust와 JavaScript 런타임 간 통신 오버헤드를 줄이기 위해 [훅 필터 기능](https://rolldown.rs/apis/plugin-api/hook-filters)을 도입했습니다. 이를 사용해 플러그인 성능을 향상시킬 수 있습니다.
 훅 필터 기능은 Rollup 4.38.0+ 및 Vite 6.3.0+ 에서도 지원합니다. Rollup 4.38.0 미만이나 Vite 6.3.0 미만 버전과 호환되는 플러그인을 만들고자 한다면, 외부 필터 설정과 별개로 훅 함수 내부에서도 동일한 필터링 로직을 구현해야 합니다. (자세한 내용은 [Rolldown 훅 필터 기능 문서](https://rolldown.rs/guide/plugin-development#plugin-hook-filters)를 참고해 주세요 - 옮긴이)
 
 ::: tip
@@ -342,4 +348,4 @@ const plugin = {
 }
 ```
 
-이는 [Rolldown이 JavaScript가 아닌 모듈을 지원하며](https://rolldown.rs/guide/in-depth/module-types), 명시적으로 지정하지 않는 한 확장자에서 모듈 타입을 추론하기 때문입니다.
+이는 [Rolldown이 JavaScript가 아닌 모듈을 지원하며](https://rolldown.rs/in-depth/module-types), 명시적으로 지정하지 않는 한 확장자에서 모듈 타입을 추론하기 때문입니다.
