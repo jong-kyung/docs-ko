@@ -45,6 +45,12 @@ Rolldown을 개발하게 된 동기에 대해 더 알고자 한다면, [Rolldown
 
 Vitepress나 다른 메타 프레임워크와 같이 Vite를 피어 디펜던시로 사용하고 있다면, `package.json` 파일에서 `vite` 디펜던시를 오버라이드해야 합니다. 사용중인 패키지 매니저에 따라 방법이 조금 다릅니다:
 
+::: tip 버전을 고정해주세요!
+
+이 예제에서는 `@latest`를 사용하고 있지만,[`rolldown-vite는 아직 실험 단계`](#versioning-policy)이므로 예상치 못한 변경 사항을 방지하기 위해 특정 버전 번호를 사용하는 것을 권장합니다.
+
+:::
+
 :::code-group
 
 ```json [npm]
@@ -192,7 +198,7 @@ export default defineConfig({
 
 실시간으로 논의하고 문제를 해결하기 위해 [Rolldown 디스코드](https://chat.rolldown.rs/)에 참여할 수도 있습니다.
 
-## 버전 관리 정책 {#version-policy}
+## 버전 관리 정책 {#versioning-policy}
 
 `rolldown-vite` 버전 관리 정책은 메이저 및 마이너 버전을 기존 Vite 패키지와 일치시키는 형태로 운영됩니다. 이러한 동기화를 통해 특정 Vite 마이너 릴리스에 포함된 기능은 이에 대응하는 `rolldown-vite` 마이너 릴리스에도 포함됩니다. 다만 패치 버전은 두 프로젝트 간 동기화되지 않는다는 점에 유의하세요. 특정 Vite 변경사항이 `rolldown-vite`에도 포함되었는지 확인하려면 [`rolldown-vite` 변경 사항](https://github.com/vitejs/rolldown-vite/blob/rolldown-vite/packages/vite/CHANGELOG.md)을 참고해 주세요.
 
